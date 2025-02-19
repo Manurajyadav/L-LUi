@@ -1,0 +1,23 @@
+/* .logo {
+    
+} */
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 40px 20px; /* Adjust padding as needed */
+}
+
+.footer-logo {
+    margin-right: 100px; /* Increase spacing between logo and other fields */
+}
+
+.footer-content {
+    display: flex;
+    gap: 30px; /* Adjust the gap between other fields */
+}
+
+.footer-column {
+    flex: 1; /* Ensures equal spacing */
+}
