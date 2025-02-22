@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plush Toy Product Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .quantity-input {
+            -moz-appearance: textfield;
+        }
+        .quantity-input::-webkit-outer-spin-button,
+        .quantity-input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
+</head>
+<body class="bg-white min-h-screen flex justify-center px-4 md:px-20 bg-[#fdf5fe]">
+    <div class="w-full p-6 md:p-10 bg-white">
+        <nav class="text-sm text-gray-500 mb-6">
+            <span class="text-gray-700">Home</span> / <span class="text-gray-700">Trending</span> / <span class="font-semibold">Plush toys for babies</span>
+        </nav>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+                <img src="assets/p1.jpg" alt="Plush Toy" class="rounded-lg">
+                <div class="flex space-x-2 mt-4">
+                    <img src="assets/p2.jpg" class="w-16 h-16 rounded-lg border" alt="Thumbnail">
+                    <img src="assets/p3.jpg" class="w-16 h-16 rounded-lg border" alt="Thumbnail">
+                    <img src="assets/p4.jpg" class="w-16 h-16 rounded-lg border" alt="Thumbnail">
+                </div>
+                <div class="flex flex-wrap gap-2 mt-5 text-sm text-gray-600">
+                    <span class="px-3 py-1 bg-gray-200 rounded">Value for money</span>
+                    <span class="px-3 py-1 bg-gray-200 rounded">1-2 yr olds</span>
+                    <span class="px-3 py-1 bg-gray-200 rounded">Good for gifting</span>
+                </div>
+            </div>
+            <div>
+                <h2 class="text-2xl md:text-3xl font-semibold">Plush toys for babies</h2>
+                <p class="text-gray-500 mt-2">Ideal age 1 to 2 years, helps develop social & emotional growth.</p>
+                <div class="flex items-center mt-2 text-yellow-500">
+                    &#9733; &#9733; &#9733; &#9733; &#9734; <span class="text-gray-600 ml-2">4.4 (24 reviews)</span>
+                </div>
+                <div class="flex flex-col md:flex-row items-start md:items-center justify-between mt-6">
+                    <p class="text-2xl font-bold">$25.60</p>
+                    <div class="flex items-center mt-3 md:mt-0">
+                        <span class="mr-2">Qty</span>
+                        <div class="flex items-center border rounded">
+                            <button class="px-3 py-1 bg-gray-200" onclick="decrement()">-</button>
+                            <input type="number" id="quantity" value="1" min="1" class="w-12 text-center outline-none quantity-input">
+                            <button class="px-3 py-1 bg-gray-200" onclick="increment()">+</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4 mt-6">
+                    <button class="flex items-center justify-center w-full md:w-auto px-6 py-3 bg-black text-white rounded-lg">
+                        <img src="assets/buynow.png" class="w-6 h-6 mr-2" alt="Cart Icon"> Buy Now
+                    </button>
+                    <button class="flex items-center justify-center w-full md:w-auto px-6 py-3 bg-gray-200 rounded-lg">
+                        <img src="assets/shopping-cart.png" class="w-6 h-6 mr-2" alt="Cart Icon"> Add to Cart
+                    </button>
+                </div>
+                <div class="mt-6">
+                    <h3 class="font-semibold">Enter Pincode</h3>
+                    <div class="flex items-center border rounded p-2 w-full md:w-3/5 mt-2">
+                        <input type="text" placeholder="Enter Pincode" class="w-full outline-none">
+                        <button class="text-gray-500 px-3">Check</button>
+                    </div>
+                </div>
+                <div class="mt-6">
+                    <h3 class="font-semibold">Delivery Options</h3>
+                    <ul class="text-gray-600 text-sm mt-2">
+                        <li>&#10003; 100% Original Products</li>
+                        <li>&#10003; Pay on delivery might be available</li>
+                        <li>&#10003; Easy 30 days returns</li>
+                    </ul>
+                </div>
+                <div class="mt-6">
+                    <h3 class="font-semibold">Product Description</h3>
+                    <p class="text-gray-600 text-sm mt-2">Ultra-portable soft toy for your child to bond with on the go. Very soft stuffed toy that is the perfect companion for your child. Intricate details develop your child's sense of touch.</p>
+                </div>
+            </div>
+        </div>
+        <h2 class="text-2xl font-semibold mt-10 mb-4">You May Also Like</h2>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div class="p-4 border rounded-lg shadow">
+                <img src="assets/p5.jpg" alt="Product 1" class="rounded-md w-full">
+                <h3 class="text-lg font-semibold mt-2 text-center">Animals Baby Toys</h3>
+                <p class="text-gray-600 text-center">$35.9</p>
+            </div>
+            <div class="p-4 border rounded-lg shadow">
+                <img src="assets/p2.jpg" alt="Product 1" class="rounded-md w-full">
+                <h3 class="text-lg font-semibold mt-2 text-center">Animals Baby Toys</h3>
+                <p class="text-gray-600 text-center">$35.9</p>
+            </div>
+            <div class="p-4 border rounded-lg shadow">
+                <img src="assets/p1.jpg" alt="Product 1" class="rounded-md w-full">
+                <h3 class="text-lg font-semibold mt-2 text-center">Animals Baby Toys</h3>
+                <p class="text-gray-600 text-center">$35.9</p>
+            </div>
+            <div class="p-4 border rounded-lg shadow">
+                <img src="assets/p3.jpg" alt="Product 1" class="rounded-md w-full">
+                <h3 class="text-lg font-semibold mt-2 text-center">Animals Baby Toys</h3>
+                <p class="text-gray-600 text-center">$35.9</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        function increment() {
+            let qty = document.getElementById('quantity');
+            qty.value = parseInt(qty.value) + 1;
+        }
+
+        function decrement() {
+            let qty = document.getElementById('quantity');
+            if (qty.value > 1) {
+                qty.value = parseInt(qty.value) - 1;
+            }
+        }
+    </script>
+</body>
+</html>
