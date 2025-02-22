@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        function showSection(section) {
+            const sections = ['productsSection', 'salesSection', 'categoriesSection', 'ordersSection', 'couponsSection'];
+            sections.forEach(id => {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.classList.add('hidden');
+                }
+            });
+    
+            const targetSection = document.getElementById(section);
+            if (targetSection) {
+                targetSection.classList.remove('hidden');
+            } else {
+                console.warn(`Section with ID '${section}' not found.`);
+            }
+    
+            document.querySelectorAll('.sidebar-item').forEach(item => item.classList.remove('text-purple-700'));
+            const menuItem = document.getElementById(section + 'Menu');
+            if (menuItem) {
+                menuItem.classList.add('text-purple-700');
+            }
+        }
+    
+        function togglePopup(popupId) {
+            const popup = document.getElementById(popupId);
+            if (popup) {
+                popup.classList.toggle('hidden');
+            }
+        }
+    
+        function toggleProductForm() {
+            const form = document.getElementById('productForm');
+            if (form) {
+                form.classList.toggle('hidden');
+            }
+        }
+    
+        function toggleSaleForm() {
+            const form = document.getElementById('saleForm');
+            if (form) {
+                form.classList.toggle('hidden');
+            }
+        }
+    
+        function toggleCategoryForm() {
+            const form = document.getElementById('categoryForm');
+            if (form) {
+                form.classList.toggle('hidden');
+            }
+        }
+    
+        function toggleOrderPopup() {
+            const popup = document.getElementById('orderPopup');
+            if (popup) {
+                popup.classList.toggle('hidden');
+            }
+        }
+    
+        function dispatchSelectedOrders() {
+            const selectedOrders = document.querySelectorAll('.orderCheckbox:checked');
+            selectedOrders.forEach(order => {
+                order.closest('tr').remove();
+            });
+        }
+    
+        function toggleSelectAll() {
+            const selectAll = document.getElementById('selectAll');
+            const checkboxes = document.querySelectorAll('.orderCheckbox');
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = selectAll.checked;
+            });
+        }
+    
+        document.addEventListener('DOMContentLoaded', function () {
+            const selectAllCheckbox = document.getElementById('selectAll');
+            if (selectAllCheckbox) {
+                selectAllCheckbox.addEventListener('change', toggleSelectAll);
+            }
+        });
+    </script>
+    
+</head>
+
+<body class="bg-gray-100">
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <div class="w-64 bg-white p-5 shadow-md">
+            <h1 class="text-2xl font-bold text-purple-700">Lush & Little</h1>
+            <ul class="mt-6 space-y-4">
+                <li id="productsSectionMenu" class="sidebar-item text-gray-700 font-medium cursor-pointer"
+                    onclick="showSection('productsSection')">Products</li>
+                <li id="salesSectionMenu" class="sidebar-item text-gray-700 font-medium cursor-pointer"
+                    onclick="showSection('salesSection')">Sales</li>
+                <li id="categoriesSectionMenu" class="sidebar-item text-gray-700 font-medium cursor-pointer"
+                    onclick="showSection('categoriesSection')">Categories</li>
+                <li id="ordersSectionMenu" class="sidebar-item text-gray-700 font-medium cursor-pointer"
+                    onclick="showSection('ordersSection')">Orders</li>
+                <li id="couponsSectionMenu" class="sidebar-item text-gray-700 font-medium cursor-pointer"
+                    onclick="showSection('couponsSection')">Coupons</li>
+                <li class="text-gray-700 font-medium cursor-pointer">Customers</li>
+                <li class="text-gray-700 font-medium cursor-pointer">Analytics</li>
+                <li class="text-gray-700 font-medium cursor-pointer">Notifications</li>
+                <li class="text-gray-700 font-medium cursor-pointer">Settings</li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 p-6">
+            <!-- Products Section -->
+            <div id="productsSection" class="hidden">
+                <h2 class="text-2xl font-bold">Products</h2>
+                <div class="bg-white p-5 rounded-lg shadow-md mt-4">
+                    <div class="flex justify-between mb-4">
+                        <button class="bg-gray-200 px-4 py-2 rounded">Filter</button>
+                        <button class="bg-purple-600 text-white px-4 py-2 rounded" onclick="toggleProductForm()">+ Add
+                            Product</button>
+                    </div>
+                    <!-- Product Form -->
+                    <div id="productForm" class="hidden bg-gray-50 p-4 rounded shadow-md">
+                        <h3 class="text-lg font-bold mb-2">Add Product</h3>
+                        <form>
+                            <input type="text" placeholder="Product Name" class="w-full p-2 border rounded mb-2">
+                            <input type="text" placeholder="Category" class="w-full p-2 border rounded mb-2">
+                            <textarea placeholder="Description" class="w-full p-2 border rounded mb-2"></textarea>
+                            <input type="number" step="0.01" placeholder="Price" class="w-full p-2 border rounded mb-2">
+                            <input type="number" step="0.01" placeholder="Discount"
+                                class="w-full p-2 border rounded mb-2">
+                            <input type="file" class="w-full p-2 border rounded mb-2">
+                            <select class="w-full p-2 border rounded mb-2">
+                                <option value="active">Active</option>
+                                <option value="inactive">Inactive</option>
+                            </select>
+                            <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded">Save</button>
+                        </form>
+                    </div>
+                    <!-- Products Table -->
+                    <table class="w-full border-collapse border border-gray-200 mt-4">
+                        <thead>
+                            <tr class="bg-gray-100">
+                                <th class="p-2 border">Product Name</th>
+                                <th class="p-2 border">Category</th>
+                                <th class="p-2 border">Price</th>
+                                <th class="p-2 border">Discount</th>
+                                <th class="p-2 border">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Sales Section -->
+            <div id="salesSection" class="hidden">
+                <h2 class="text-2xl font-bold">Sales</h2>
+                <div class="bg-white p-5 rounded-lg shadow-md mt-4">
+                    <div class="flex justify-between mb-4">
+                        <button class="bg-gray-200 px-4 py-2 rounded">Filter</button>
+                        <button class="bg-purple-600 text-white px-4 py-2 rounded" onclick="toggleSaleForm()">+ Add
+                            Sale</button>
+                    </div>
+                    <!-- Sale Form -->
+                    <div id="saleForm" class="hidden bg-gray-50 p-4 rounded shadow-md">
+                        <h3 class="text-lg font-bold mb-2">Add Sale</h3>
+                        <form>
+                            <input type="text" placeholder="Sale Name" class="w-full p-2 border rounded mb-2">
+                            <button type="menu" class="bg-purple-500 text-white px-4 py-2 mb-4 rounded">Add
+                                Products</button>
+                            <input type="number" step="0.01" placeholder="Discount"
+                                class="w-full p-2 border rounded mb-2">
+                            <input type="date" placeholder="Start Sale Date" class="w-full p-2 border rounded mb-2">
+                            <input type="date" placeholder="End Sale Date" class="w-full p-2 border rounded mb-2">
+                            <select class="w-full p-2 border rounded mb-2">
+                                <option value="active">Active</option>
+                                <option value="inactive">Inactive</option>
+                            </select>
+                            <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded">Save</button>
+                        </form>
+                    </div>
+                    <table class="w-full border-collapse border border-gray-200 mt-4">
+                        <thead>
+                            <tr class="bg-gray-100">
+                                <th class="p-2 border">Sale Name</th>
+                                <th class="p-2 border">Start Date</th>
+                                <th class="p-2 border">Enad Date</th>
+                                <th class="p-2 border">Product Count</th>
+                                <th class="p-2 border">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Categories Section -->
+            <div id="categoriesSection" class="hidden">
+                <h2 class="text-2xl font-bold">Categories</h2>
+                <div class="bg-white p-5 rounded-lg shadow-md mt-4">
+                    <div class="flex justify-between mb-4">
+                        <button class="bg-gray-200 px-4 py-2 rounded">Filter</button>
+                        <button class="bg-purple-600 text-white px-4 py-2 rounded" onclick="toggleCategoryForm()">+ Add
+                            Category</button>
+                    </div>
+                    <!-- Category Form -->
+                    <div id="categoryForm" class="hidden bg-gray-50 p-4 rounded shadow-md">
+                        <h3 class="text-lg font-bold mb-2">Add Category</h3>
+                        <form>
+                            <input type="text" placeholder="Category Name" class="w-full p-2 border rounded mb-2">
+                            <button type="menu" class="bg-purple-500 text-white px-4 py-2 mb-4 rounded">Add
+                                Products</button>
+                            <select class="w-full p-2 border rounded mb-2">
+                                <option value="active">Active</option>
+                                <option value="inactive">Inactive</option>
+                            </select>
+                            <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded">Save</button>
+                        </form>
+                    </div>
+                    <table class="w-full border-collapse border border-gray-200 mt-4">
+                        <thead>
+                            <tr class="bg-gray-100">
+                                <th class="p-2 border">Category Name</th>
+                                <th class="p-2 border">Product Count</th>
+                                <th class="p-2 border">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- Order Content -->
+            <div class="flex-1 p-6">
+                <!-- Orders Section -->
+                <div id="ordersSection" class="hidden">
+                    <h2 class="text-2xl font-bold">Orders</h2>
+                    <div class="bg-white p-5 rounded-lg shadow-md mt-4">
+                        <div class="grid grid-cols-5 gap-4">
+                            <button class="bg-blue-500 text-white px-4 py-2 rounded" onclick="toggleOrderPopup()">Active
+                                (5)</button>
+                            <button class="bg-yellow-500 text-white px-4 py-2 rounded">Dispatch (3)</button>
+                            <button class="bg-red-500 text-white px-4 py-2 rounded">Cancelled (2)</button>
+                            <button class="bg-green-500 text-white px-4 py-2 rounded">Completed (7)</button>
+                            <button class="bg-gray-500 text-white px-4 py-2 rounded">Returned (1)</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Order Popup -->
+            <div id="orderPopup"
+                class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center">
+                <div class="bg-white p-5 rounded-lg shadow-md w-1/2">
+                    <h3 class="text-lg font-bold mb-4">Active Orders</h3>
+                    <table class="w-full border-collapse border border-gray-200 mb-4">
+                        <thead>
+                            <tr class="bg-gray-100">
+                                <th class="p-2 border"><input type="checkbox" id="selectAll"></th>
+                                <th class="p-2 border">Product Name</th>
+                                <th class="p-2 border">Category</th>
+                                <th class="p-2 border">Price</th>
+                                <th class="p-2 border">Quantity</th>
+                                <th class="p-2 border">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border">
+                                <td class="p-2 border"><input type="checkbox" class="orderCheckbox"></td>
+                                <td class="p-2 border">Product 1</td>
+                                <td class="p-2 border">Category A</td>
+                                <td class="p-2 border">$100</td>
+                                <td class="p-2 border">2</td>
+                                <td class="p-2 border text-blue-500">Active</td>
+                            </tr>
+                            <tr class="border">
+                                <td class="p-2 border"><input type="checkbox" class="orderCheckbox"></td>
+                                <td class="p-2 border">Product 2</td>
+                                <td class="p-2 border">Category B</td>
+                                <td class="p-2 border">$50</td>
+                                <td class="p-2 border">1</td>
+                                <td class="p-2 border text-blue-500">Active</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="flex justify-between">
+                        <button class="bg-gray-500 text-white px-4 py-2 rounded"
+                            onclick="toggleOrderPopup()">Close</button>
+                        <button class="bg-yellow-500 text-white px-4 py-2 rounded"
+                            onclick="dispatchSelectedOrders()">Dispatch</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Coupon Content -->
+            <div class="flex-1 p-6">
+                <!-- Coupons Section -->
+                <div id="couponsSection" class="hidden">
+                    <h2 class="text-2xl font-bold">Coupons</h2>
+                    <div class="bg-white p-5 rounded-lg shadow-md mt-4">
+                        <div class="flex justify-between mb-4">
+                            <button class="bg-gray-200 px-4 py-2 rounded">Filter</button>
+                            <button class="bg-purple-600 text-white px-4 py-2 rounded" onclick="togglePopup('addCouponPopup')">+ Add Coupon</button>
+                        </div>
+                        <!-- Coupon Form -->
+                        <div id="addCouponPopup" class="hidden bg-gray-50 p-4 rounded shadow-md">
+                            <h3 class="text-lg font-bold mb-2">Add Coupon</h3>
+                            <form>
+                                <input type="text" placeholder="Coupon Code" class="w-full p-2 border rounded mb-2">
+                                <select class="w-full p-2 border rounded mb-2">
+                                    <option value="active">Active</option>
+                                    <option value="inactive">Inactive</option>
+                                </select>
+                                <div class="flex justify-between mt-4">
+                                    <button type="button" class="bg-gray-500 text-white px-4 py-2 rounded" onclick="togglePopup('addCouponPopup')">Close</button>
+                                    <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded">Save</button>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- Coupons Table -->
+                        <table class="w-full border-collapse border border-gray-200 mt-4">
+                            <thead>
+                                <tr class="bg-gray-100">
+                                    <th class="p-2 border">Coupon Code</th>
+                                    <th class="p-2 border">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
