@@ -1,4 +1,31 @@
-/* Hero Banner */
+/* Custom CSS for mobile menu */
+#mobile-menu {
+    width: 250px; /* Adjust the width as needed */
+    right: 10px; /* Position from the right */
+    top: 70px; /* Position below the navbar */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth transition */
+    transform: translateY(-10px); /* Slight upward shift */
+    opacity: 0; /* Initially hidden */
+    visibility: hidden; /* Initially hidden */
+}
+
+#mobile-menu.show {
+    opacity: 1; /* Fully visible */
+    visibility: visible; /* Fully visible */
+    transform: translateY(0); /* Reset position */
+}
+
+#mobile-category-dropdown {
+    transition: max-height 0.3s ease; /* Smooth transition for dropdown */
+    max-height: 0; /* Initially collapsed */
+    overflow: hidden; /* Hide overflow */
+}
+
+#mobile-category-dropdown.show {
+    max-height: 200px; /* Adjust based on content */
+}
 
 
 
