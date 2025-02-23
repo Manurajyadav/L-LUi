@@ -9,31 +9,79 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <script>
+        // Function to toggle dropdowns and close others
+        function toggleDropdown(id) {
+            let dropdown = document.getElementById(id);
+
+            if (!dropdown) return;
+
+            // Check if the clicked dropdown is already open
+            let isHidden = dropdown.classList.contains("hidden");
+
+            // Close all dropdowns first
+            document.querySelectorAll(".dropdown").forEach(d => d.classList.add("hidden"));
+
+            // If it was hidden, show it
+            if (isHidden) {
+                dropdown.classList.remove("hidden");
+            }
+        }
+
+        // Function to toggle the mobile menu
         function toggleMenu() {
-            document.getElementById("mobile-menu").classList.toggle("hidden");
+            const mobileMenu = document.getElementById("mobile-menu");
+            mobileMenu.classList.toggle("show");
         }
-        function toggleDropdown() {
-            document.getElementById("category-dropdown").classList.toggle("hidden");
-        }
+
+        // Function to toggle the mobile category dropdown
         function toggleMobileDropdown() {
-            document.getElementById("mobile-category-dropdown").classList.toggle("hidden");
+            const mobileDropdown = document.getElementById("mobile-category-dropdown");
+            mobileDropdown.classList.toggle("show");
         }
-        function toggleMenu() {
-            document.getElementById("mobile-menu").classList.toggle("hidden");
-        }
-        function toggleDropdown() {
-            document.getElementById("category-dropdown").classList.toggle("hidden");
-        }
+
+        // Function to toggle the search bar
         function toggleSearch() {
             let searchBar = document.getElementById("search-bar");
             searchBar.classList.toggle("hidden");
+
             if (!searchBar.classList.contains("hidden")) {
                 document.getElementById("search-input").focus();
             }
         }
+
+        // Close dropdowns when clicking outside
+        document.addEventListener("click", function (event) {
+            const mobileMenu = document.getElementById("mobile-menu");
+            const mobileDropdown = document.getElementById("mobile-category-dropdown");
+            const isMobileMenuButton = event.target.closest("button[onclick='toggleMenu()']");
+            const isMobileDropdownButton = event.target.closest("button[onclick='toggleMobileDropdown()']");
+            const isMobileMenu = event.target.closest("#mobile-menu");
+            const isMobileDropdown = event.target.closest("#mobile-category-dropdown");
+
+            // Close mobile menu and dropdown if clicking outside
+            if (!isMobileMenuButton && !isMobileMenu) {
+                mobileMenu.classList.remove("show");
+            }
+            if (!isMobileDropdownButton && !isMobileDropdown) {
+                mobileDropdown.classList.remove("show");
+            }
+
+            // Close other dropdowns
+            let isDropdownButton = event.target.closest("button");
+            let isDropdownMenu = event.target.closest(".dropdown");
+
+            if (!isDropdownButton && !isDropdownMenu) {
+                document.querySelectorAll(".dropdown").forEach(dropdown => {
+                    dropdown.classList.add("hidden");
+                });
+            }
+        });
+
+        // Event listeners for search functionality
         document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("search-icon").addEventListener("click", toggleSearch);
             document.getElementById("close-search").addEventListener("click", toggleSearch);
+
             document.getElementById("search-btn").addEventListener("click", function () {
                 let query = document.getElementById("search-input").value;
                 if (query.trim() !== "") {
@@ -41,6 +89,38 @@
                 }
             });
         });
+
+        // Prevent flickering on hover
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll(".group").forEach(group => {
+                let timeout;
+                let dropdown = group.querySelector(".dropdown");
+
+                if (!dropdown) return;
+
+                group.addEventListener("mouseenter", () => {
+                    clearTimeout(timeout);
+                    dropdown.classList.remove("hidden");
+                });
+
+                group.addEventListener("mouseleave", () => {
+                    timeout = setTimeout(() => {
+                        dropdown.classList.add("hidden");
+                    }, 200);
+                });
+
+                dropdown.addEventListener("mouseenter", () => {
+                    clearTimeout(timeout);
+                });
+
+                dropdown.addEventListener("mouseleave", () => {
+                    timeout = setTimeout(() => {
+                        dropdown.classList.add("hidden");
+                    }, 200);
+                });
+            });
+        });
+
     </script>
 </head>
 
@@ -50,23 +130,24 @@
     <div class="bg-black text-white text-center py-2 text-sm">
         First order coupo code - FIRST20 Lorem ipsum dolor sit amet consectetur adipisicing elit.
     </div>
-
     <!-- Navbar -->
-    <nav class="bg-[#fdf5fe] flex items-center justify-between py-4 shadow-md px-10 md:px-20 relative">
+    <nav class="bg-[#fdf5fe] flex items-center justify-between py-3 shadow-md px-10 md:px-20 relative">
         <div class="flex items-center space-x-2">
             <a href="#">
                 <img src="assets/logo.png" alt="Logo" class="h-10 md:h-10 w-auto">
             </a>
         </div>
 
-        <div class="hidden md:flex space-x-6 relative">
+        <div class="hidden md:flex space-x-6 absolute left-1/2 transform -translate-x-1/2 z-10">
             <a href="#" class="text-gray-600 hover:text-gray-900">Home</a>
             <a href="#" class="text-gray-600 hover:text-gray-900">About</a>
-            <div class="relative">
-                <button onclick="toggleDropdown()" class="text-gray-600 hover:text-gray-900 flex items-center">
-                    Categories <i class="fas fa-chevron-down ml-2"></i>
+            <div class="relative group">
+                <button class="text-gray-600 hover:text-gray-900 flex items-center">
+                    Categories
+                    <!--<i class="fas fa-chevron-down text-sm ml-2"></i> -->
                 </button>
-                <div id="category-dropdown" class="hidden absolute bg-white shadow-lg rounded-md mt-2 w-40 z-50">
+                <div id="category-dropdown"
+                    class="dropdown hidden absolute bg-white shadow-lg rounded-md mt-2 w-40 z-50">
                     <a href="#" class="block px-4 py-2 text-gray-600 hover:bg-gray-100">Toys</a>
                     <a href="#" class="block px-4 py-2 text-gray-600 hover:bg-gray-100">Clothing</a>
                     <a href="#" class="block px-4 py-2 text-gray-600 hover:bg-gray-100">Accessories</a>
@@ -75,17 +156,21 @@
             <a href="#" class="text-gray-600 hover:text-gray-900">Products</a>
         </div>
 
-        <div class="flex items-center space-x-4">
+        <div class="flex items-center gap-5">
             <a href="#" class="text-gray-600 hover:text-gray-900">
                 <div class="flex items-center space-x-4 relative w-full">
-                    <div id="search-bar" class="hidden md:flex items-center bg-white border border-gray-300 rounded-2xl px-4 py-2 w-72 shadow-sm transition-all">
-                        <input type="text" id="search-input" placeholder="Search..." class="focus:outline-none w-full text-gray-700 placeholder-gray-400">
+                    <div id="search-bar"
+                        class="hidden md:flex items-center bg-white border border-gray-300 rounded-lg px-4 py-2 
+                               w-full xs:w-32 sm:w-40 md:w-52 lg:w-60 xl:w-72 2xl:w-80 shadow-md transition-all">
+                        <input type="text" id="search-input" placeholder="Search..."
+                            class="focus:outline-none w-full text-gray-700 placeholder-gray-400 text-sm md:text-base">
                         <button id="search-btn" class="text-gray-600 hover:text-gray-900">
                             <i class="fas fa-search"></i>
                         </button>
                     </div>
                 </div>
             </a>
+                       
             <a href="#" class="relative">
                 <img src="assets/shopping-cart.png" alt="Cart" class="h-6 w-6">
                 <span class="absolute -top-2 -right-2 bg-blue-500 text-white text-xs px-1 rounded-full">0</span>
@@ -93,30 +178,43 @@
             <a href="#">
                 <img src="assets/wishlist.png" alt="Wishlist" class="h-6 w-6">
             </a>
-            <a href="#">
-                <img src="assets/login.png" alt="Login" class="h-6 w-6">
-            </a>
-
-            <button class="md:hidden focus:outline-none" onclick="toggleMenu()">
-                <svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                    xmlns="https://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
-                    </path>
-                </svg>
-            </button>
+            <div class="relative group">
+                <button class="flex items-center space-x-2 focus:outline-none">
+                    <img src="assets/login.png" alt="Login" class="h-6 w-6">
+                </button>
+                <div id="login-dropdown"
+                    class="dropdown hidden absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg overflow-hidden z-50">
+                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">My Profile</a>
+                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">Orders</a>
+                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">Wishlist</a>
+                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">Coupons</a>
+                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">Logout</a>
+                </div>
+            </div>
         </div>
-        <div id="search-bar" class="hidden absolute top-16 right-10 bg-white shadow-md p-2 rounded-lg flex items-center space-x-2">
+        <div id="search-bar"
+            class="hidden absolute top-16 right-10 bg-white shadow-md p-2 rounded-lg flex items-center space-x-2">
             <input type="text" placeholder="Search..." class="border border-gray-300 rounded-lg p-2 focus:outline-none">
             <button onclick="toggleSearch()" class="text-gray-600 hover:text-gray-900">
                 <i class="fas fa-times"></i>
             </button>
         </div>
+        <!-- Hamburger Menu Button -->
+        <button class="md:hidden focus:outline-none" onclick="toggleMenu()">
+            <svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                </path>
+            </svg>
+        </button>
+
     </nav>
 
     <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg p-4 rounded-lg absolute top-16 right-4 w-48 z-10">
+    <div id="mobile-menu" class="md:hidden bg-white shadow-lg p-4 rounded-lg fixed z-50">
         <div class="flex items-center mb-4">
-            <input type="text" id="mobile-search-input" placeholder="Search..." class="border border-gray-300 rounded-lg p-2 w-full focus:outline-none">
+            <input type="text" id="mobile-search-input" placeholder="Search..."
+                class="border border-gray-300 rounded-lg p-2 w-full focus:outline-none">
             <button onclick="toggleSearch()" class="ml-2 text-gray-600 hover:text-gray-900">
                 <i class="fas fa-search"></i>
             </button>
@@ -126,13 +224,14 @@
         <button onclick="toggleMobileDropdown()" class="block w-full text-left py-2 text-gray-600 hover:text-gray-900">
             Categories <i class="fas fa-chevron-down ml-2"></i>
         </button>
-        <div id="mobile-category-dropdown" class="hidden bg-gray-100 rounded-md mt-2">
+        <div id="mobile-category-dropdown" class="bg-gray-100 rounded-md mt-2">
             <a href="#" class="block px-4 py-2 text-gray-600 hover:bg-gray-200">Toys</a>
             <a href="#" class="block px-4 py-2 text-gray-600 hover:bg-gray-200">Clothing</a>
             <a href="#" class="block px-4 py-2 text-gray-600 hover:bg-gray-200">Accessories</a>
         </div>
         <a href="#" class="block py-2 text-gray-600 hover:text-gray-900">Products</a>
     </div>
+
 
 
     <!-- Hero Section -->
@@ -157,7 +256,7 @@
             <div class="product-container" id="productContainer">
                 <!-- Product Cards -->
                 <div class="product-card">
-                    <img src="https://via.placeholder.com/300x200" alt="Product 1">
+                    <img src="assets/product.jpg" alt="Product 1">
                     <div class="content">
                         <h3>Product Name 1</h3>
                         <div class="price">
