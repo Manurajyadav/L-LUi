@@ -18,6 +18,29 @@
         function toggleMobileDropdown() {
             document.getElementById("mobile-category-dropdown").classList.toggle("hidden");
         }
+        function toggleMenu() {
+            document.getElementById("mobile-menu").classList.toggle("hidden");
+        }
+        function toggleDropdown() {
+            document.getElementById("category-dropdown").classList.toggle("hidden");
+        }
+        function toggleSearch() {
+            let searchBar = document.getElementById("search-bar");
+            searchBar.classList.toggle("hidden");
+            if (!searchBar.classList.contains("hidden")) {
+                document.getElementById("search-input").focus();
+            }
+        }
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("search-icon").addEventListener("click", toggleSearch);
+            document.getElementById("close-search").addEventListener("click", toggleSearch);
+            document.getElementById("search-btn").addEventListener("click", function () {
+                let query = document.getElementById("search-input").value;
+                if (query.trim() !== "") {
+                    alert("Searching for: " + query);
+                }
+            });
+        });
     </script>
 </head>
 
@@ -54,7 +77,14 @@
 
         <div class="flex items-center space-x-4">
             <a href="#" class="text-gray-600 hover:text-gray-900">
-                <img src="assets/search.png" alt="Search" class="h-6 w-6">
+                <div class="flex items-center space-x-4 relative w-full">
+                    <div id="search-bar" class="hidden md:flex items-center bg-white border border-gray-300 rounded-2xl px-4 py-2 w-72 shadow-sm transition-all">
+                        <input type="text" id="search-input" placeholder="Search..." class="focus:outline-none w-full text-gray-700 placeholder-gray-400">
+                        <button id="search-btn" class="text-gray-600 hover:text-gray-900">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
             </a>
             <a href="#" class="relative">
                 <img src="assets/shopping-cart.png" alt="Cart" class="h-6 w-6">
@@ -75,15 +105,27 @@
                 </svg>
             </button>
         </div>
+        <div id="search-bar" class="hidden absolute top-16 right-10 bg-white shadow-md p-2 rounded-lg flex items-center space-x-2">
+            <input type="text" placeholder="Search..." class="border border-gray-300 rounded-lg p-2 focus:outline-none">
+            <button onclick="toggleSearch()" class="text-gray-600 hover:text-gray-900">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
     </nav>
 
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg p-4 rounded-lg absolute top-16 right-4 w-48 z-10">
+        <div class="flex items-center mb-4">
+            <input type="text" id="mobile-search-input" placeholder="Search..." class="border border-gray-300 rounded-lg p-2 w-full focus:outline-none">
+            <button onclick="toggleSearch()" class="ml-2 text-gray-600 hover:text-gray-900">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
         <a href="#" class="block py-2 text-gray-600 hover:text-gray-900">Home</a>
         <a href="#" class="block py-2 text-gray-600 hover:text-gray-900">About</a>
-        <button onclick="toggleMobileDropdown()"
-            class="block w-full text-left py-2 text-gray-600 hover:text-gray-900">Categories <i
-                class="fas fa-chevron-down ml-2"></i></button>
+        <button onclick="toggleMobileDropdown()" class="block w-full text-left py-2 text-gray-600 hover:text-gray-900">
+            Categories <i class="fas fa-chevron-down ml-2"></i>
+        </button>
         <div id="mobile-category-dropdown" class="hidden bg-gray-100 rounded-md mt-2">
             <a href="#" class="block px-4 py-2 text-gray-600 hover:bg-gray-200">Toys</a>
             <a href="#" class="block px-4 py-2 text-gray-600 hover:bg-gray-200">Clothing</a>
