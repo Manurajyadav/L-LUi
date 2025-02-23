@@ -47,7 +47,7 @@
                     <a href="#" class="block px-4 py-2 text-gray-600 hover:bg-gray-100">Toys</a>
                     <a href="#" class="block px-4 py-2 text-gray-600 hover:bg-gray-100">Clothing</a>
                     <a href="#" class="block px-4 py-2 text-gray-600 hover:bg-gray-100">Accessories</a>
-                </div>                
+                </div>
             </div>
             <a href="#" class="text-gray-600 hover:text-gray-900">Products</a>
         </div>
@@ -81,7 +81,9 @@
     <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg p-4 rounded-lg absolute top-16 right-4 w-48 z-10">
         <a href="#" class="block py-2 text-gray-600 hover:text-gray-900">Home</a>
         <a href="#" class="block py-2 text-gray-600 hover:text-gray-900">About</a>
-        <button onclick="toggleMobileDropdown()" class="block w-full text-left py-2 text-gray-600 hover:text-gray-900">Categories <i class="fas fa-chevron-down ml-2"></i></button>
+        <button onclick="toggleMobileDropdown()"
+            class="block w-full text-left py-2 text-gray-600 hover:text-gray-900">Categories <i
+                class="fas fa-chevron-down ml-2"></i></button>
         <div id="mobile-category-dropdown" class="hidden bg-gray-100 rounded-md mt-2">
             <a href="#" class="block px-4 py-2 text-gray-600 hover:bg-gray-200">Toys</a>
             <a href="#" class="block px-4 py-2 text-gray-600 hover:bg-gray-200">Clothing</a>
@@ -93,57 +95,242 @@
 
     <!-- Hero Section -->
     <section class="relative h-[40vh] md:h-[60vh] bg-cover bg-center flex items-center justify-center text-white"
-    style="background-image: url('assets/hero.jpg');">
-    <div class="text-center bg-black bg-opacity-50 p-6 md:p-10 rounded-lg max-w-lg">
-        <h1 class="text-3xl md:text-5xl font-bold">Design Your Comfort Zone</h1>
-        <p class="text-sm md:text-lg mt-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta assumenda iste libero dicta modi quo quas vitae.</p>
-        <button class="mt-6 px-6 py-2 border border-white text-white rounded-lg shadow-md hover:bg-white hover:text-black transition">
-            Shop Now
-        </button>
-    </div>
-</section>
+        style="background-image: url('assets/hero.jpg');">
+        <div class="text-center p-10 md:p-20">
+            <h1 class="text-4xl md:text-6xl font-bold">Design Your Comfort Zone</h1>
+            <p class="text-sm md:text-lg mt-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta assumenda
+                iste libero dicta modi quo quas vitae.</p>
+            <button
+                class="mt-6 px-6 py-2 border border-white text-white rounded-lg shadow-md hover:bg-white hover:text-black transition">
+                Shop Now
+            </button>
+        </div>
+    </section>
 
 
     <div class="max-w-screen-xl mx-auto px-6 md:px-16">
         <!-- Product Section -->
         <section class="py-10">
-            <h2 class="text-3xl font-bold mb-6 text-center">Trending Products</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                <div class="p-4 border rounded-lg shadow">
-                    <img src="assets/product.jpg" alt="Product 1" class="rounded-md w-full">
-                    <h3 class="text-lg font-semibold mt-2 text-center">Animals Baby Toys</h3>
-                    <p class="text-gray-600 text-center">$35.9</p>
+            <h2 class="text-3xl font-bold mb-6 text-center">Best Seller</h2>
+            <div class="product-container" id="productContainer">
+                <!-- Product Cards -->
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/300x200" alt="Product 1">
+                    <div class="content">
+                        <h3>Product Name 1</h3>
+                        <div class="price">
+                            <span class="mrp">₹999</span>
+                            <span class="selling-price">₹799</span>
+                            <span class="discount">20% off</span>
+                        </div>
+                        <div class="buttons">
+                            <button>Buy Now</button>
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="p-4 border rounded-lg shadow">
-                    <img src="assets/product.jpg" alt="Product 2" class="rounded-md w-full">
-                    <h3 class="text-lg font-semibold mt-2 text-center">Octopus Baby Toys</h3>
-                    <p class="text-gray-600 text-center">$25.6</p>
+
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/300x200" alt="Product 2">
+                    <div class="content">
+                        <h3>Product Name 2</h3>
+                        <div class="price">
+                            <span class="mrp">₹1499</span>
+                            <span class="selling-price">₹1199</span>
+                            <span class="discount">20% off</span>
+                        </div>
+                        <div class="buttons">
+                            <button>Buy Now</button>
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="p-4 border rounded-lg shadow">
-                    <img src="assets/product.jpg" alt="Product 3" class="rounded-md w-full">
-                    <h3 class="text-lg font-semibold mt-2 text-center">Wild Animals Baby Toys</h3>
-                    <p class="text-gray-600 text-center">$45.2</p>
+
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/300x200" alt="Product 3">
+                    <div class="content">
+                        <h3>Product Name 3</h3>
+                        <div class="price">
+                            <span class="mrp">₹1999</span>
+                            <span class="selling-price">₹1599</span>
+                            <span class="discount">20% off</span>
+                        </div>
+                        <div class="buttons">
+                            <button>Buy Now</button>
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add more product cards as needed -->
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/300x200" alt="Product 4">
+                    <div class="content">
+                        <h3>Product Name 4</h3>
+                        <div class="price">
+                            <span class="mrp">₹2499</span>
+                            <span class="selling-price">₹1999</span>
+                            <span class="discount">20% off</span>
+                        </div>
+                        <div class="buttons">
+                            <button>Buy Now</button>
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/300x200" alt="Product 5">
+                    <div class="content">
+                        <h3>Product Name 5</h3>
+                        <div class="price">
+                            <span class="mrp">₹2999</span>
+                            <span class="selling-price">₹2499</span>
+                            <span class="discount">20% off</span>
+                        </div>
+                        <div class="buttons">
+                            <button>Buy Now</button>
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
                 </div>
             </div>
+
+            <!-- Left Scroll Button -->
+            <button class="scroll-button left" onclick="scrollProducts('left')">&#10094;</button>
+
+            <!-- Right Scroll Button -->
+            <button class="scroll-button right" onclick="scrollProducts('right')">&#10095;</button>
+
+            <script>
+                function scrollProducts(direction) {
+                    const container = document.getElementById('productContainer');
+                    const scrollAmount = 300; // Adjust scroll distance as needed
+
+                    if (direction === 'left') {
+                        container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+                    } else {
+                        container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                    }
+                }
+            </script>
+
         </section>
+
+        <!--Category Section-->
+        <div class=" p-8">
+
+            <h2 class="text-3xl font-bold mb-6 text-center">Product Categories</h2>
+
+            <div class="category-container">
+                <!-- First Category (Large by default) -->
+                <div class="category-card large bg-gray-100 p-9 rounded-2xl">
+                    <p class="text-sm text-gray-600">Home & Living</p>
+                    <h3 class="text-xl font-bold">SOFA</h3>
+                    <img src="sofa.png" alt="Sofa" class="w-32 h-32 absolute bottom-4 right-4">
+                    <button class="mt-4 bg-gray-900 text-white px-4 py-2 rounded-lg text-sm">Shop Now →</button>
+                </div>
+
+                <div class="category-card bg-blue-100 p-9 rounded-2xl">
+                    <p class="text-sm text-gray-600">Clothing & Shoes</p>
+                    <h3 class="text-xl font-bold">SNEAKERS</h3>
+                    <img src="sneakers.png" alt="Sneakers" class="w-32 h-32 absolute bottom-4 right-4">
+                    <button
+                        class="mt-4 bg-gray-900 text-white px-4 py-2 rounded-lg text-sm opacity-0 transition-opacity duration-300">Shop
+                        Now →</button>
+                </div>
+
+                <div class="category-card bg-yellow-100 p-9 rounded-2xl">
+                    <p class="text-sm text-gray-600">Toys & Entertainment</p>
+                    <h3 class="text-xl font-bold">TOY TRAIN</h3>
+                    <img src="toy-train.png" alt="Toy Train" class="w-32 h-32 absolute bottom-4 right-4">
+                    <button
+                        class="mt-4 bg-gray-900 text-white px-4 py-2 rounded-lg text-sm opacity-0 transition-opacity duration-300">Shop
+                        Now →</button>
+                </div>
+            </div>
+
+            <div class="category-container mt-4">
+                <div class="category-card bg-green-100 p-9 rounded-2xl">
+                    <p class="text-sm text-gray-600">Toys & Entertainment</p>
+                    <h3 class="text-xl font-bold">PARTY DECORS</h3>
+                    <img src="party-decor.png" alt="Party Decor" class="w-32 h-32 absolute bottom-4 right-4">
+                    <button
+                        class="mt-4 bg-gray-900 text-white px-4 py-2 rounded-lg text-sm opacity-0 transition-opacity duration-300">Shop
+                        Now →</button>
+                </div>
+
+                <div class="category-card bg-purple-100 p-9 rounded-2xl">
+                    <p class="text-sm text-gray-600">Electronics</p>
+                    <h3 class="text-xl font-bold">GADGETS</h3>
+                    <img src="gadget.png" alt="Gadgets" class="w-32 h-32 absolute bottom-4 right-4">
+                    <button
+                        class="mt-4 bg-gray-900 text-white px-4 py-2 rounded-lg text-sm opacity-0 transition-opacity duration-300">Shop
+                        Now →</button>
+                </div>
+
+                <!-- Last Category (Large by default) -->
+                <div class="category-card large bg-red-100 p-9 rounded-2xl">
+                    <p class="text-sm text-gray-600">Jewelry & Accessories</p>
+                    <h3 class="text-xl font-bold">DIAMOND RING</h3>
+                    <img src="diamond-ring.png" alt="Diamond Ring" class="w-32 h-32 absolute bottom-4 right-4">
+                    <button class="mt-4 bg-gray-900 text-white px-4 py-2 rounded-lg text-sm">Shop Now →</button>
+                </div>
+            </div>
+
+        </div>
+
         <!-- Product Section -->
         <section class="py-10">
             <h2 class="text-3xl font-bold mb-6 text-center">Best Seller</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                <div class="p-4 border rounded-lg shadow">
-                    <img src="assets/product.jpg" alt="Product 1" class="rounded-md w-full">
-                    <h3 class="text-lg font-semibold mt-2 text-center">Animals Baby Toys</h3>
-                    <p class="text-gray-600 text-center">$35.9</p>
+            <div class="product-container" id="productContainer">
+                <!-- Product Cards -->
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/300x200" alt="Product 1">
+                    <div class="content">
+                        <h3>Product Name 1</h3>
+                        <div class="price">
+                            <span class="mrp">₹999</span>
+                            <span class="selling-price">₹799</span>
+                            <span class="discount">20% off</span>
+                        </div>
+                        <div class="buttons">
+                            <button>Buy Now</button>
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="p-4 border rounded-lg shadow">
-                    <img src="assets/product.jpg" alt="Product 2" class="rounded-md w-full">
-                    <h3 class="text-lg font-semibold mt-2 text-center">Octopus Baby Toys</h3>
-                    <p class="text-gray-600 text-center">$25.6</p>
+
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/300x200" alt="Product 2">
+                    <div class="content">
+                        <h3>Product Name 2</h3>
+                        <div class="price">
+                            <span class="mrp">₹1499</span>
+                            <span class="selling-price">₹1199</span>
+                            <span class="discount">20% off</span>
+                        </div>
+                        <div class="buttons">
+                            <button>Buy Now</button>
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="p-4 border rounded-lg shadow">
-                    <img src="assets/product.jpg" alt="Product 3" class="rounded-md w-full">
-                    <h3 class="text-lg font-semibold mt-2 text-center">Wild Animals Baby Toys</h3>
-                    <p class="text-gray-600 text-center">$45.2</p>
+
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/300x200" alt="Product 3">
+                    <div class="content">
+                        <h3>Product Name 3</h3>
+                        <div class="price">
+                            <span class="mrp">₹1999</span>
+                            <span class="selling-price">₹1599</span>
+                            <span class="discount">20% off</span>
+                        </div>
+                        <div class="buttons">
+                            <button>Buy Now</button>
+                            <button>Add to Cart</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -156,10 +343,10 @@
                 <div class="mb-6 md:mb-0">
                     <img src="assets/FooterLogo.png" alt="Footer Logo" class="h-24 md:h-32 w-auto">
                 </div>
-                
+
 
                 <div class="grid grid-cols-2 md:grid-cols-3 gap-12 md:gap-16 text-center md:text-left">
-                    
+
                     <div>
                         <h4 class="font-semibold mb-3 text-gray-900">Support</h4>
                         <ul class="space-y-2">
