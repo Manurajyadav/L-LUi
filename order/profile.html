@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Profile Page</title>
+</head>
+
+<body class="bg-white">
+    <div class="max-w-5xl mx-auto p-6">
+        <div class="bg-white rounded-lg p-6">
+            <div class="flex justify-between items-center border-b pb-3">
+                <div>
+                    <h2 class="text-xl font-semibold">Account</h2>
+                    <h3 class="text-gray-700">Manu Raj Yadav</h3>
+                </div>
+                <div class="relative block sm:hidden">
+                    <button id="menu-btn" class="p-2 hover:bg-gray-200 transition flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7h18M3 12h18m-6 5h6" />
+                        </svg>
+                    </button>                
+                    <div id="menu" class="hidden absolute right-0 mt-2 w-56 bg-white border border-gray-300 rounded-lg shadow-xl z-10">
+                        <ul class="p-4 space-y-2 text-gray-700">
+                            <li class="cursor-pointer hover:bg-gray-100 p-2 rounded-md">Overview</li>
+                            <li class="cursor-pointer hover:bg-gray-100 p-2 rounded-md">Orders & Returns</li>
+                            <li class="cursor-pointer hover:bg-gray-100 p-2 rounded-md">Coupons</li>
+                            <li class="text-green-500 font-semibold cursor-pointer hover:bg-gray-100 p-2 rounded-md">Profile</li>
+                            <li class="cursor-pointer hover:bg-gray-100 p-2 rounded-md">Addresses</li>
+                            <li class="cursor-pointer hover:bg-gray-100 p-2 rounded-md">Delete Account</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-4 gap-6 mt-6">
+                <div class="col-span-1 border-r pr-4 hidden sm:block">
+                    <ul class="space-y-3 text-gray-600">
+                        
+                        <li class="font-medium"><button class="font-medium hover:text-green-500">Overview</button></li>
+                        <li class="font-medium"><button class="font-medium hover:text-green-500">Orders & Returns</li></li>
+                        <li class="font-medium"><button class="font-medium hover:text-green-500">Coupons</button></li>
+                        <li class="font-medium"><button class="font-medium hover:text-green-500">Profile</button></li>
+                        <li class="font-medium"><button class="font-medium hover:text-green-500">Addresses</button></li>
+                        <li class="font-medium"><button class="font-medium hover:text-green-500">Delete Account</button></li>
+                    </ul>
+                </div>
+
+                <div class="col-span-3">
+                    <h2 class="text-lg font-semibold mb-4">Profile Details</h2>
+                    <div class="bg-gray-50 p-6  shadow-sm">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <p class="text-gray-600">Full Name</p>
+                                <p>Manu Raj Yadav</p>
+                            </div>
+                            <div>
+                                <p class="text-gray-600">Mobile Number</p>
+                                <p>8299563694</p>
+                            </div>
+                            <div>
+                                <p class="text-gray-600">Email ID</p>
+                                <p>manuryadav2002@gmail.com</p>
+                            </div>
+                            <div>
+                                <p class="text-gray-600">Gender</p>
+                                <p>Male</p>
+                            </div>
+                            <div>
+                                <p class="text-gray-600">Date of Birth</p>
+                                <p class="font-medium text-gray-400">- not added -</p>
+                            </div>
+                            <div>
+                                <p class="text-gray-600">Location</p>
+                                <p class="font-medium text-gray-400">- not added -</p>
+                            </div>
+                            <div>
+                                <p class="text-gray-600">Alternate Mobile</p>
+                                <p class="font-medium text-gray-400">- not added -</p>
+                            </div>
+                            <div>
+                                <p class="text-gray-600">Hint Name</p>
+                                <p class="font-medium text-gray-400">- not added -</p>
+                            </div>
+                        </div>
+                        <div class="mt-6 flex justify-center">
+                            <button class="bg-blue-500 text-white py-2 px-4 rounded font-medium hover:bg-blue-600">
+                                EDIT
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('menu-btn').addEventListener('click', function () {
+            document.getElementById('menu').classList.toggle('hidden');
+        });
+    </script>
+</body>
+
+</html>

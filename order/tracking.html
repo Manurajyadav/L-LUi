@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Tracking</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-white p-4">
+    <div class="max-w-4xl mx-auto bg-white p-6 rounded-lg">
+        <!-- Title and Image -->
+        <div class="flex flex-col sm:flex-row justify-between items-center sm:items-start">
+            <div class="text-center sm:text-left">
+                <h2 class="text-xl font-semibold">Headset</h2>
+                <p class="text-gray-500">Brown</p>
+                <p class="text-gray-600">Seller: AlfaRetailCorp</p>
+                <p class="text-lg font-bold text-green-600">₹185</p>
+            </div>
+            <img class="w-24 sm:w-20 max-w-full mt-4 sm:mt-0" src="product.jpg" alt="Product Image">
+        </div>
+
+        <!-- Order Tracking and Shipping Details -->
+        <div class="mt-6 border-t pt-4 flex flex-col lg:flex-row">
+            <!-- Order Tracking -->
+            <div class="w-full lg:w-1/2 pr-0 lg:pr-4 border-r lg:border-r-gray-200">
+                <div class="relative">
+                    <div class="absolute left-7 top-7 w-1 bg-green-600"></div>
+                    <div class="flex flex-col items-start space-y-0">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-5 h-5 bg-green-500 text-white flex items-center justify-center rounded-full">
+                                ✓
+                            </div>
+                            <p class="text-gray-700 font-medium">Order Confirmed, Jan 25</p>
+                        </div>
+                        <div class="w-0.5 h-6 bg-green-500 ml-2 -mt-1"></div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-5 h-5 bg-green-500 text-white flex items-center justify-center rounded-full">
+                                ✓
+                            </div>
+                            <p class="text-gray-700 font-medium">Delivered, Jan 28</p>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-gray-500 text-sm mt-2">Return policy ended on Feb 07</p>
+            </div>
+
+            <!-- Shipping and Price Details -->
+            <div class="w-full lg:w-1/2 mt-6 lg:mt-0 p-4 rounded-lg shadow-sm">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <h3 class="font-semibold">Shipping Details</h3>
+                        <p class="font-medium text-gray-600">Manu Raj Yadav</p>
+                        <p>H-87, Algocirrus, Sector 63, Noida</p>
+                        <p>Uttar Pradesh - 201301</p>
+                        <p class="font-semibold">Phone: 8299563694</p>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold">Price Details</h3>
+                        <p>List price: <span class="line-through">₹399</span></p>
+                        <p>Selling price: ₹399</p>
+                        <p>Extra Discount: <span class="text-red-500">- ₹193</span></p>
+                        <p>Special Price: ₹206</p>
+                        <p>Delivery Charge: <span class="text-green-600">Free</span></p>
+                        <p>Handling Fee: ₹7</p>
+                        <p>Get extra 15% off upto <span class="text-green-600">- ₹31</span></p>
+                    </div>
+                </div>
+                <div class="mt-6 flex justify-center">
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded font-medium hover:bg-blue-600">
+                        DOWNLOAD INVOICE
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
